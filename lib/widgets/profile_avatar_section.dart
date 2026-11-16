@@ -1,5 +1,7 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
+
 import '../theme/app_theme.dart';
 
 class ProfileAvatarSection extends StatefulWidget {
@@ -64,7 +66,11 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
               const SizedBox(width: 10),
               const Text(
                 'Change Profile Image Link',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),
@@ -82,10 +88,16 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                 style: const TextStyle(color: Colors.white, fontSize: 13),
                 decoration: InputDecoration(
                   hintText: 'https://example.com/my-photo.jpg',
-                  hintStyle: const TextStyle(color: Colors.white30, fontSize: 13),
+                  hintStyle: const TextStyle(
+                    color: Colors.white30,
+                    fontSize: 13,
+                  ),
                   filled: true,
                   fillColor: t.surfaceLight,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 12,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(color: t.border),
@@ -101,18 +113,23 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                 spacing: 8,
                 children: [
                   ActionChip(
-                    label: const Text('GitHub Avatar', style: TextStyle(fontSize: 11)),
+                    label: const Text(
+                      'GitHub Avatar',
+                      style: TextStyle(fontSize: 11),
+                    ),
                     backgroundColor: t.surfaceLight,
                     onPressed: () {
                       controller.text = 'https://avatars.githubusercontent.com/u/108343715?v=4';
                     },
                   ),
                   ActionChip(
-                    label: const Text('Developer Portrait', style: TextStyle(fontSize: 11)),
+                    label: const Text(
+                      'Developer Portrait',
+                      style: TextStyle(fontSize: 11),
+                    ),
                     backgroundColor: t.surfaceLight,
                     onPressed: () {
-                      controller.text =
-                          'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';
+                      controller.text = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';
                     },
                   ),
                 ],
@@ -122,7 +139,10 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
           actions: [
             TextButton(
               onPressed: () => Navigator.of(ctx).pop(),
-              child: const Text('Cancel', style: TextStyle(color: Colors.white54)),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.white54),
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -134,9 +154,14 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: t.primary,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-              child: const Text('Update Global Link', style: TextStyle(color: Colors.white)),
+              child: const Text(
+                'Update Global Link',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         );
@@ -154,7 +179,8 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
       child: AnimatedBuilder(
         animation: Listenable.merge([_rotationController, _floatController]),
         builder: (context, child) {
-          final floatOffset = math.sin(_floatController.value * 2 * math.pi) * 8;
+          final floatOffset =
+              math.sin(_floatController.value * 2 * math.pi) * 8;
 
           return SizedBox(
             width: 380,
@@ -192,16 +218,13 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(36),
                       gradient: SweepGradient(
-                        colors: [
-                          t.primary,
-                          t.secondary,
-                          t.accent,
-                          t.primary,
-                        ],
+                        colors: [t.primary, t.secondary, t.accent, t.primary],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: t.primary.withValues(alpha: _isHovered ? 0.6 : 0.3),
+                          color: t.primary.withValues(
+                            alpha: _isHovered ? 0.6 : 0.3,
+                          ),
                           blurRadius: _isHovered ? 32 : 18,
                           spreadRadius: 2,
                         ),
@@ -221,7 +244,11 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                   duration: const Duration(milliseconds: 250),
                   width: 272,
                   height: 272,
-                  transform: Matrix4.translationValues(0, -floatOffset * 0.4, 0),
+                  transform: Matrix4.translationValues(
+                    0,
+                    -floatOffset * 0.4,
+                    0,
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: t.surfaceLight,
@@ -238,9 +265,7 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                     child: Stack(
                       children: [
                         // Smart Image: Supports global online URL and local asset
-                        Positioned.fill(
-                          child: _buildImage(widget.imageUrl, t),
-                        ),
+                        Positioned.fill(child: _buildImage(widget.imageUrl, t)),
 
                         // Subtle bottom gradient vignette
                         Positioned.fill(
@@ -260,39 +285,39 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                         ),
 
                         // Top-right Change Link button on hover or click
-                        Positioned(
-                          top: 10,
-                          right: 10,
-                          child: Material(
-                            color: Colors.black.withValues(alpha: 0.6),
-                            borderRadius: BorderRadius.circular(20),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(20),
-                              onTap: () => _showEditImageDialog(context),
-                              child: Tooltip(
-                                message: 'Change Global Image Link',
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.edit_rounded, size: 12, color: t.primaryLight),
-                                      const SizedBox(width: 4),
-                                      const Text(
-                                        'Link',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // Positioned(
+                        //   top: 10,
+                        //   right: 10,
+                        //   child: Material(
+                        //     color: Colors.black.withValues(alpha: 0.6),
+                        //     borderRadius: BorderRadius.circular(20),
+                        //     child: InkWell(
+                        //       borderRadius: BorderRadius.circular(20),
+                        //       onTap: () => _showEditImageDialog(context),
+                        //       child: Tooltip(
+                        //         message: 'Change Global Image Link',
+                        //         child: Padding(
+                        //           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                        //           child: Row(
+                        //             mainAxisSize: MainAxisSize.min,
+                        //             children: [
+                        //               Icon(Icons.edit_rounded, size: 12, color: t.primaryLight),
+                        //               const SizedBox(width: 4),
+                        //               const Text(
+                        //                 'Link',
+                        //                 style: TextStyle(
+                        //                   fontSize: 10,
+                        //                   fontWeight: FontWeight.bold,
+                        //                   color: Colors.white,
+                        //                 ),
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
 
                         // Bottom Developer Status Pill
                         Positioned(
@@ -300,11 +325,16 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                           left: 12,
                           right: 12,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 6,
+                            ),
                             decoration: BoxDecoration(
                               color: t.background.withValues(alpha: 0.85),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: t.primary.withValues(alpha: 0.4)),
+                              border: Border.all(
+                                color: t.primary.withValues(alpha: 0.4),
+                              ),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -370,10 +400,7 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                 Positioned(
                   top: 50 - floatOffset * 0.7,
                   left: -12,
-                  child: _MiniFloatingBadge(
-                    text: '⚡ 2+ Yrs Exp',
-                    theme: t,
-                  ),
+                  child: _MiniFloatingBadge(text: '⚡ 2+ Yrs Exp', theme: t),
                 ),
               ],
             ),
@@ -440,10 +467,7 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            t.surfaceLight,
-            t.surface,
-          ],
+          colors: [t.surfaceLight, t.surface],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -483,10 +507,7 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
             const SizedBox(height: 4),
             Text(
               'Tap "Link" to set photo URL',
-              style: TextStyle(
-                fontSize: 10,
-                color: t.textMuted,
-              ),
+              style: TextStyle(fontSize: 10, color: t.textMuted),
             ),
           ],
         ),
@@ -517,17 +538,17 @@ class _FloatingBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.surface.withValues(alpha: 0.95),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: accentColor.withValues(alpha: 0.4), width: 1.2),
+        border: Border.all(
+          color: accentColor.withValues(alpha: 0.4),
+          width: 1.2,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.4),
             blurRadius: 16,
             offset: const Offset(0, 6),
           ),
-          BoxShadow(
-            color: accentColor.withValues(alpha: 0.2),
-            blurRadius: 12,
-          ),
+          BoxShadow(color: accentColor.withValues(alpha: 0.2), blurRadius: 12),
         ],
       ),
       child: Row(
