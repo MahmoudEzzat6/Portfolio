@@ -4,8 +4,8 @@ class PortfolioConfig {
   static const String email = 'ezzatmahmoud08@gmail.com';
   static const String phone = '+20 112 931 6102';
   
-  // Global online image URL hosted on CDN/web (Mahmoud's GitHub public avatar)
-  static const String defaultProfileImageUrl = 'https://github.com/MahmoudEzzat6.png';
+  // Profile image (local asset with web support)
+  static const String defaultProfileImageUrl = 'assets/images/profile.png';
 
   // Global Social Links
   static const String githubUrl = 'https://github.com/MahmoudEzzat6';

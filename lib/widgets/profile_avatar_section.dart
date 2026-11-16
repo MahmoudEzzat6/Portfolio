@@ -414,7 +414,23 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
         width: double.infinity,
         height: double.infinity,
         errorBuilder: (context, error, stackTrace) {
-          return _buildFallbackAvatar(t);
+          return Image.asset(
+            'assets/images/profile.jpg',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+            errorBuilder: (context, error2, stackTrace2) {
+              return Image.asset(
+                'assets/images/profile_image.jfif',
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity,
+                errorBuilder: (context, error3, stackTrace3) {
+                  return _buildFallbackAvatar(t);
+                },
+              );
+            },
+          );
         },
       );
     }
