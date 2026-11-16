@@ -47,128 +47,6 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
     super.dispose();
   }
 
-  void _showEditImageDialog(BuildContext context) {
-    final controller = TextEditingController(text: widget.imageUrl);
-
-    showDialog(
-      context: context,
-      builder: (ctx) {
-        final t = widget.theme;
-        return AlertDialog(
-          backgroundColor: t.surface,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: BorderSide(color: t.borderGlow),
-          ),
-          title: Row(
-            children: [
-              Icon(Icons.link_rounded, color: t.primaryLight, size: 24),
-              const SizedBox(width: 10),
-              const Text(
-                'Change Profile Image Link',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ],
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Enter a global online URL (e.g. from GitHub, Google Drive, Imgur, Cloudinary, or web):',
-                style: TextStyle(fontSize: 13, color: Colors.white70),
-              ),
-              const SizedBox(height: 14),
-              TextField(
-                controller: controller,
-                style: const TextStyle(color: Colors.white, fontSize: 13),
-                decoration: InputDecoration(
-                  hintText: 'https://example.com/my-photo.jpg',
-                  hintStyle: const TextStyle(
-                    color: Colors.white30,
-                    fontSize: 13,
-                  ),
-                  filled: true,
-                  fillColor: t.surfaceLight,
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 12,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: t.border),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: t.primaryLight),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                children: [
-                  ActionChip(
-                    label: const Text(
-                      'GitHub Avatar',
-                      style: TextStyle(fontSize: 11),
-                    ),
-                    backgroundColor: t.surfaceLight,
-                    onPressed: () {
-                      controller.text = 'https://avatars.githubusercontent.com/u/108343715?v=4';
-                    },
-                  ),
-                  ActionChip(
-                    label: const Text(
-                      'Developer Portrait',
-                      style: TextStyle(fontSize: 11),
-                    ),
-                    backgroundColor: t.surfaceLight,
-                    onPressed: () {
-                      controller.text = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80';
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(),
-              child: const Text(
-                'Cancel',
-                style: TextStyle(color: Colors.white54),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                final newUrl = controller.text.trim();
-                if (newUrl.isNotEmpty && widget.onImageChanged != null) {
-                  widget.onImageChanged!(newUrl);
-                }
-                Navigator.of(ctx).pop();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: t.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                'Update Global Link',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final t = widget.theme;
@@ -284,41 +162,6 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                           ),
                         ),
 
-                        // Top-right Change Link button on hover or click
-                        // Positioned(
-                        //   top: 10,
-                        //   right: 10,
-                        //   child: Material(
-                        //     color: Colors.black.withValues(alpha: 0.6),
-                        //     borderRadius: BorderRadius.circular(20),
-                        //     child: InkWell(
-                        //       borderRadius: BorderRadius.circular(20),
-                        //       onTap: () => _showEditImageDialog(context),
-                        //       child: Tooltip(
-                        //         message: 'Change Global Image Link',
-                        //         child: Padding(
-                        //           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                        //           child: Row(
-                        //             mainAxisSize: MainAxisSize.min,
-                        //             children: [
-                        //               Icon(Icons.edit_rounded, size: 12, color: t.primaryLight),
-                        //               const SizedBox(width: 4),
-                        //               const Text(
-                        //                 'Link',
-                        //                 style: TextStyle(
-                        //                   fontSize: 10,
-                        //                   fontWeight: FontWeight.bold,
-                        //                   color: Colors.white,
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-
                         // Bottom Developer Status Pill
                         Positioned(
                           bottom: 12,
@@ -370,10 +213,10 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                   ),
                 ),
 
-                // Floating Badge 1: Flutter & Dart (Top Right)
+                // Floating Badge 1: Flutter & Dart (Bottom Right)
                 Positioned(
-                  top: 20 + floatOffset,
-                  right: -10,
+                  bottom: 30 + floatOffset,
+                  right: -15,
                   child: _FloatingBadge(
                     icon: Icons.flutter_dash_rounded,
                     label: 'Flutter & Dart',
@@ -396,10 +239,10 @@ class _ProfileAvatarSectionState extends State<ProfileAvatarSection>
                   ),
                 ),
 
-                // Floating Badge 3: 2+ Years Exp (Top Left)
+                // Floating Badge 3: 2+ Years Exp (Compact Top Pill)
                 Positioned(
-                  top: 50 - floatOffset * 0.7,
-                  left: -12,
+                  top: 15 - floatOffset * 0.7,
+                  right: -5,
                   child: _MiniFloatingBadge(text: '⚡ 2+ Yrs Exp', theme: t),
                 ),
               ],
