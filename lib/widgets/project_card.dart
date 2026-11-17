@@ -217,7 +217,7 @@ class ProjectCard extends StatelessWidget {
                         icon: Icons.apple_rounded,
                         label: 'App Store',
                         onTap: () => onLaunchUrl(project.appStoreUrl!),
-                        isPrimary: true,
+                        isPrimary: project.playStoreUrl == null,
                         theme: t,
                       ),
                     if (project.liveUrl != null)

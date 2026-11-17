@@ -845,6 +845,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         ],
         playStoreUrl:
             'https://play.google.com/store/apps/details?id=com.gosmart.stacked_burger_dev',
+        appStoreUrl:
+            'https://apps.apple.com/eg/app/stackd-burger-eg/id6759962136',
       ),
       Project(
         title: 'Mostasmer',
@@ -888,6 +890,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         ],
         playStoreUrl:
             'https://play.google.com/store/apps/details?id=com.nitg.step2english',
+        appStoreUrl:
+            'https://apps.apple.com/eg/app/step2english/id6746757309',
       ),
       Project(
         title: 'Enterprise Retail POS (Windows/Android)',
