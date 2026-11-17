@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/portfolio_models.dart';
 import '../theme/app_theme.dart';
 import 'hover_card.dart';
@@ -79,11 +80,7 @@ class ProjectCard extends StatelessWidget {
                                 },
                               ),
                             )
-                          : Icon(
-                              project.icon,
-                              color: Colors.white,
-                              size: 24,
-                            ),
+                          : Icon(project.icon, color: Colors.white, size: 24),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -225,17 +222,20 @@ class ProjectCard extends StatelessWidget {
                         icon: Icons.launch_rounded,
                         label: 'View Project',
                         onTap: () => onLaunchUrl(project.liveUrl!),
-                        isPrimary: project.playStoreUrl == null && project.appStoreUrl == null,
+                        isPrimary:
+                            project.playStoreUrl == null &&
+                            project.appStoreUrl == null,
                         theme: t,
                       ),
                     if (project.githubUrl != null)
-                      _CardActionButton(
-                        icon: Icons.code_rounded,
-                        label: 'Code / Info',
-                        onTap: () => onLaunchUrl(project.githubUrl!),
-                        isPrimary: false,
-                        theme: t,
-                      ),
+                      SizedBox(height: 50, width: 50),
+                    // _CardActionButton(
+                    //   icon: Icons.code_rounded,
+                    //   label: 'Code / Info',
+                    //   onTap: () => onLaunchUrl(project.githubUrl!),
+                    //   isPrimary: false,
+                    //   theme: t,
+                    // ),
                   ],
                 ),
               ],
