@@ -9,6 +9,9 @@ class Project {
   final Gradient gradient;
   final String? liveUrl;
   final String? githubUrl;
+  final String? appStoreUrl;
+  final String? playStoreUrl;
+  final String? projectImageUrl;
   final List<String> highlights;
 
   const Project({
@@ -21,6 +24,9 @@ class Project {
     this.liveUrl,
     this.githubUrl,
     this.highlights = const [],
+    this.appStoreUrl,
+    this.playStoreUrl,
+    this.projectImageUrl,
   });
 }
 
@@ -78,7 +84,9 @@ class GitHubRepo {
   factory GitHubRepo.fromJson(Map<String, dynamic> json) {
     return GitHubRepo(
       name: json['name'] ?? '',
-      description: json['description'] ?? 'Cross-platform application built with Flutter & Dart.',
+      description:
+          json['description'] ??
+          'Cross-platform application built with Flutter & Dart.',
       stargazersCount: json['stargazers_count'] ?? 0,
       forksCount: json['forks_count'] ?? 0,
       language: json['language'] ?? 'Dart',

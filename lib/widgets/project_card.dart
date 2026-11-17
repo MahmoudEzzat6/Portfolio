@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../models/portfolio_models.dart';
 import '../theme/app_theme.dart';
 import 'hover_card.dart';
@@ -63,7 +62,28 @@ class ProjectCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Icon(project.icon, color: Colors.white, size: 24),
+                      child: project.projectImageUrl != null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(6),
+                              child: Image.asset(
+                                project.projectImageUrl!,
+                                height: 26,
+                                width: 26,
+                                fit: BoxFit.contain,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Icon(
+                                    project.icon,
+                                    color: Colors.white,
+                                    size: 24,
+                                  );
+                                },
+                              ),
+                            )
+                          : Icon(
+                              project.icon,
+                              color: Colors.white,
+                              size: 24,
+                            ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -180,26 +200,42 @@ class ProjectCard extends StatelessWidget {
                 const SizedBox(height: 14),
 
                 // Action Buttons
-                Row(
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 10,
                   children: [
+                    if (project.playStoreUrl != null)
+                      _CardActionButton(
+                        icon: Icons.shop_two_rounded,
+                        label: 'Google Play',
+                        onTap: () => onLaunchUrl(project.playStoreUrl!),
+                        isPrimary: true,
+                        theme: t,
+                      ),
+                    if (project.appStoreUrl != null)
+                      _CardActionButton(
+                        icon: Icons.apple_rounded,
+                        label: 'App Store',
+                        onTap: () => onLaunchUrl(project.appStoreUrl!),
+                        isPrimary: project.playStoreUrl == null,
+                        theme: t,
+                      ),
                     if (project.liveUrl != null)
                       _CardActionButton(
                         icon: Icons.launch_rounded,
                         label: 'View Project',
                         onTap: () => onLaunchUrl(project.liveUrl!),
-                        isPrimary: true,
+                        isPrimary: project.playStoreUrl == null && project.appStoreUrl == null,
                         theme: t,
                       ),
-                    if (project.githubUrl != null) ...[
-                      const SizedBox(width: 12),
-                      // _CardActionButton(
-                      //   icon: Icons.code_rounded,
-                      //   label: 'Code / Info',
-                      //   onTap: () => onLaunchUrl(project.githubUrl!),
-                      //   isPrimary: false,
-                      //   theme: t,
-                      // ),
-                    ],
+                    if (project.githubUrl != null)
+                      _CardActionButton(
+                        icon: Icons.code_rounded,
+                        label: 'Code / Info',
+                        onTap: () => onLaunchUrl(project.githubUrl!),
+                        isPrimary: false,
+                        theme: t,
+                      ),
                   ],
                 ),
               ],
@@ -264,7 +300,7 @@ class _CardActionButtonState extends State<_CardActionButton> {
             children: [
               Icon(
                 widget.icon,
-                size: 14,
+                size: 15,
                 color: widget.isPrimary
                     ? (_isHovered ? Colors.white : t.primaryLight)
                     : Colors.white,

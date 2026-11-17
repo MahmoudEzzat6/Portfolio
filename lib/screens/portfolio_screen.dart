@@ -456,7 +456,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                     child: ProfileAvatarSection(
                       theme: theme,
                       imageUrl: _profileImageUrl,
-                      onImageChanged: (newUrl) => setState(() => _profileImageUrl = newUrl),
+                      onImageChanged: (newUrl) =>
+                          setState(() => _profileImageUrl = newUrl),
                     ),
                   ),
                 ),
@@ -473,7 +474,8 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   child: ProfileAvatarSection(
                     theme: theme,
                     imageUrl: _profileImageUrl,
-                    onImageChanged: (newUrl) => setState(() => _profileImageUrl = newUrl),
+                    onImageChanged: (newUrl) =>
+                        setState(() => _profileImageUrl = newUrl),
                   ),
                 ),
                 const SizedBox(height: 36),
@@ -826,6 +828,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         tag: 'Mobile & POS Engine',
         description: 'Complete location-aware food ordering app and restaurant POS system with dynamic regional menus and secure digital checkout.',
         icon: Icons.fastfood_rounded,
+        projectImageUrl: 'assets/images/stackd_logo.png',
         gradient: theme.primaryGradient,
         highlights: const [
           'Integrated Fawry and QNB digital payment gateways with real-time webhook confirmations.',
@@ -840,7 +843,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           'QNB Gateway',
           'Dio',
         ],
-        githubUrl: 'https://github.com/MahmoudEzzat6',
+        playStoreUrl:
+            'https://play.google.com/store/apps/details?id=com.gosmart.stacked_burger_dev',
+        appStoreUrl:
+            'https://apps.apple.com/eg/app/stackd-burger-eg/id6759962136',
       ),
       Project(
         title: 'Mostasmer',
@@ -868,6 +874,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
         tag: 'EdTech Streaming',
         description: 'Interactive educational platform designed for children, featuring structured video curriculum, interactive quizzes, and child-safe streaming.',
         icon: Icons.school_rounded,
+        projectImageUrl: 'assets/images/step_logo.png',
         gradient: theme.primaryGradient,
         highlights: const [
           'Custom HLS/MP4 video player with playback speed controls, resume-playback, and offline caching.',
@@ -881,7 +888,10 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
           'In-App Storage',
           'Lottie Animations',
         ],
-        githubUrl: 'https://github.com/MahmoudEzzat6',
+        playStoreUrl:
+            'https://play.google.com/store/apps/details?id=com.nitg.step2english',
+        appStoreUrl:
+            'https://apps.apple.com/eg/app/step2english/id6746757309',
       ),
       Project(
         title: 'Enterprise Retail POS (Windows/Android)',
